@@ -152,7 +152,7 @@ function initializeData() {
 }
 
 function generateImagePaths() {
-    const folders = ['nuestras conversaciones', 'cositas juntos', 'detallitos', 'ti preciosa', 'tu y yo'];
+    const folders = ['nuestras conversaciones', 'cositas juntos', 'detallitos', 'ti hermosa', 'tu y yo'];
     const images = [];
     
     folders.forEach(folder => {
