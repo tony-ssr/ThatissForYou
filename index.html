@@ -146,11 +146,136 @@
             </div>
         </section>
 
+        <!-- Poetry Book Section -->
+        <section id="poetry" class="poetry-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Libro de Nuestros Versos</h2>
+                    <div class="graffiti-underline"></div>
+                </div>
+                <!-- <p class="section-subtitle">Poemas escritos con el alma</p> -->
+                
+                <div class="poetry-book">
+                    <div class="book-cover" id="bookCover">
+                        <div class="cover-design">
+                            <div class="cover-title">Versos de Amor</div>
+                            <div class="cover-subtitle">Para Tatiana</div>
+                            <div class="cover-heart">♥</div>
+                            <div class="cover-author">Por Esteban</div>
+                        </div>
+                    </div>
+                    
+                    <div class="book-pages" id="bookPages">
+                        <div class="page active" data-page="1">
+                            <div class="page-content">
+                                <h3 class="poem-title">Tu Sonrisa</h3>
+                                <div class="poem-text">
+                                    <p class="verse">En tu sonrisa encuentro el sol,</p>
+                                    <p class="verse">que ilumina mi corazón,</p>
+                                    <p class="verse">eres la luz de mi existir,</p>
+                                    <p class="verse">mi razón para vivir.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="page" data-page="2">
+                            <div class="page-content">
+                                <h3 class="poem-title">Nuestro Amor</h3>
+                                <div class="poem-text">
+                                    <p class="verse">Como graffiti en la pared,</p>
+                                    <p class="verse">nuestro amor quedó marcado,</p>
+                                    <p class="verse">en cada rincón de la ciudad,</p>
+                                    <p class="verse">nuestro nombre está grabado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="page" data-page="3">
+                            <div class="page-content">
+                                <h3 class="poem-title">Eternidad</h3>
+                                <div class="poem-text">
+                                    <p class="verse">Si pudiera detener el tiempo,</p>
+                                    <p class="verse">lo haría en este momento,</p>
+                                    <p class="verse">para vivir por siempre</p>
+                                    <p class="verse">este dulce sentimiento.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="page" data-page="4">
+                            <div class="page-content">
+                                <h3 class="poem-title">Mi Promesa</h3>
+                                <div class="poem-text">
+                                    <p class="verse">Te prometo ser tu refugio,</p>
+                                    <p class="verse">en las noches de tormenta,</p>
+                                    <p class="verse">ser tu luz cuando todo sea oscuro,</p>
+                                    <p class="verse">y amarte hasta que el mundo se detenga.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="book-controls">
+                        <button class="book-btn" id="prevPage">
+                            <span>◀ Anterior</span>
+                        </button>
+                        <div class="page-indicator">
+                            <span id="currentPage">1</span> / <span id="totalPages">4</span>
+                        </div>
+                        <button class="book-btn" id="nextPage">
+                            <span>Siguiente ▶</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Game Section -->
+        <section id="game" class="game-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Juego del Amor</h2>
+                    <div class="graffiti-underline"></div>
+                </div>
+                <!-- <p class="section-subtitle">Encuentra los corazones y descubre mensajes especiales</p> -->
+                
+                <div class="love-game">
+                    <div class="game-info">
+                        <div class="score-display">
+                            <span class="score-label">Corazones encontrados:</span>
+                            <span class="score-value" id="gameScore">0</span> / <span id="totalHearts">12</span>
+                        </div>
+                        <div class="game-message" id="gameMessage">¡Haz clic en los corazones que aparecen!</div>
+                    </div>
+                    
+                    <div class="game-board" id="gameBoard">
+                        <!-- Los corazones se generarán dinámicamente -->
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="game-btn" id="startGame">Comenzar Juego</button>
+                        <button class="game-btn" id="resetGame" style="display: none;">Reiniciar</button>
+                    </div>
+                    
+                    <div class="love-messages" id="loveMessages">
+                        <!-- Los mensajes aparecerán aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p>Hecho con ❤️ por Esteban para Tatiana</p>
-                <div class="footer-graffiti">Forever & Always</div>
+                <div class="footer-heart">♥</div>
+                <p class="footer-message">Con todo mi amor, para la mujer que cambió mi mundo</p>
+                <div class="footer-signature">Esteban ♥ Tatiana</div>
+                <div class="footer-tags">
+                    <span class="footer-tag">#AmorEterno</span>
+                    <span class="footer-tag">#NuestroAmor</span>
+                    <span class="footer-tag">#ParaSiempre</span>
+                    <span class="footer-tag">#TatianaYEsteban</span>
+                </div>
             </div>
         </footer>
     </main>
