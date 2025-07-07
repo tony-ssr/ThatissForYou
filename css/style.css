@@ -28,6 +28,94 @@ body {
     color: var(--white-spray);
     overflow-x: hidden;
     line-height: 1.6;
+    position: relative;
+}
+
+/* ===== FONDO ANIMADO ===== */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    background: var(--primary-cyan);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
+.particle:nth-child(odd) {
+    background: var(--primary-magenta);
+    animation-duration: 25s;
+}
+
+.particle:nth-child(3n) {
+    background: var(--electric-yellow);
+    animation-duration: 30s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.graffiti-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.graffiti-tag {
+    position: absolute;
+    font-family: var(--font-graffiti);
+    font-size: 2rem;
+    opacity: 0.03;
+    color: var(--primary-cyan);
+    transform: rotate(-15deg);
+    animation: fadeInOut 15s infinite;
+    pointer-events: none;
+}
+
+.graffiti-tag:nth-child(2) {
+    color: var(--primary-magenta);
+    animation-delay: 5s;
+    transform: rotate(10deg);
+}
+
+.graffiti-tag:nth-child(3) {
+    color: var(--electric-yellow);
+    animation-delay: 10s;
+    transform: rotate(-5deg);
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.05; }
 }
 
 /* ===== PANTALLA DE CARGA ===== */
@@ -345,6 +433,7 @@ body {
         linear-gradient(135deg, var(--dark-bg) 0%, #2d2d2d 100%);
     position: relative;
     overflow: hidden;
+    border-radius: 25px;
 }
 
 .hero::before {
@@ -917,12 +1006,609 @@ section {
     font-style: italic;
 }
 
+/* ===== POETRY BOOK SECTION ===== */
+.poetry-section {
+    padding: 100px 20px;
+    background: 
+        linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 50%, var(--dark-bg) 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.poetry-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 30% 20%, var(--primary-magenta) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, var(--primary-cyan) 0%, transparent 50%);
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.poetry-book {
+    max-width: 800px;
+    margin: 60px auto 0;
+    position: relative;
+    z-index: 2;
+    perspective: 1000px;
+}
+
+.book-cover {
+    width: 100%;
+    height: 500px;
+    background: 
+        linear-gradient(45deg, #8B4513, #A0522D),
+        linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, transparent 50%);
+    border-radius: 15px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 2px 10px rgba(255, 215, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 69, 19, 0.1) 2px,
+            rgba(139, 69, 19, 0.1) 4px
+        );
+    z-index: 1;
+}
+
+.book-cover:hover {
+    transform: rotateY(-15deg) rotateX(5deg);
+    box-shadow: 
+        -10px 20px 50px rgba(0, 0, 0, 0.7),
+        inset 0 2px 15px rgba(255, 215, 0, 0.3);
+}
+
+.cover-design {
+    text-align: center;
+    color: var(--white-spray);
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+}
+
+.cover-title {
+    font-family: var(--font-graffiti);
+    font-size: 3rem;
+    color: var(--electric-yellow);
+    text-shadow: 
+        0 0 20px var(--electric-yellow),
+        3px 3px 0px var(--shadow-black);
+    margin-bottom: 20px;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 
+            0 0 20px var(--electric-yellow),
+            3px 3px 0px var(--shadow-black);
+    }
+    to {
+        text-shadow: 
+            0 0 30px var(--electric-yellow),
+            0 0 40px var(--primary-cyan),
+            3px 3px 0px var(--shadow-black);
+    }
+}
+
+.cover-subtitle {
+    font-family: var(--font-graffiti);
+    font-size: 1.5rem;
+    color: var(--primary-cyan);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+.cover-heart {
+    font-size: 4rem;
+    color: var(--primary-magenta);
+    margin: 30px 0;
+    animation: heartPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px var(--primary-magenta));
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.cover-author {
+    font-family: var(--font-graffiti);
+    font-size: 1.2rem;
+    color: var(--white-spray);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+.book-pages {
+    display: none;
+    width: 100%;
+    height: 500px;
+    background: #f5f5dc;
+    border-radius: 15px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(139, 69, 19, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.book-pages.open {
+    display: block;
+    animation: bookOpen 0.8s ease-out;
+}
+
+@keyframes bookOpen {
+    from {
+        transform: rotateY(-90deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, #f5f5dc 0%, #faf0e6 100%);
+    padding: 60px 50px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s ease;
+    border-radius: 15px;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ddd, #ccc, #ddd);
+    z-index: 1;
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.poem-title {
+    font-family: var(--font-graffiti);
+    font-size: 2.5rem;
+    color: var(--primary-magenta);
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    animation: titleFadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes titleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.poem-text {
+    text-align: center;
+    line-height: 2;
+}
+
+.verse {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: verseFadeIn 0.8s ease-out forwards;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.verse:nth-child(1) { animation-delay: 0.5s; }
+.verse:nth-child(2) { animation-delay: 0.7s; }
+.verse:nth-child(3) { animation-delay: 0.9s; }
+.verse:nth-child(4) { animation-delay: 1.1s; }
+
+@keyframes verseFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.book-controls {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.book-controls.show {
+    display: flex;
+    animation: controlsFadeIn 0.5s ease-out;
+}
+
+@keyframes controlsFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.book-btn {
+    background: linear-gradient(45deg, var(--primary-cyan), var(--primary-magenta));
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: var(--white-spray);
+    font-family: var(--font-graffiti);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 0px var(--shadow-black);
+}
+
+.book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+.book-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.page-indicator {
+    font-family: var(--font-graffiti);
+    font-size: 1.2rem;
+    color: var(--white-spray);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+/* ===== LOVE GAME SECTION ===== */
+.game-section {
+    padding: 100px 20px;
+    background: 
+        linear-gradient(45deg, var(--dark-bg) 0%, #2d1b69 50%, var(--dark-bg) 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.game-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, var(--primary-magenta) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, var(--electric-yellow) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, var(--primary-cyan) 0%, transparent 30%);
+    opacity: 0.1;
+    z-index: 1;
+    animation: gameBackgroundShift 15s ease-in-out infinite;
+}
+
+@keyframes gameBackgroundShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    33% { transform: scale(1.1) rotate(2deg); }
+    66% { transform: scale(0.9) rotate(-2deg); }
+}
+
+.love-game {
+    max-width: 900px;
+    margin: 60px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid var(--primary-cyan);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.score-display {
+    margin-bottom: 15px;
+}
+
+.score-label {
+    font-family: var(--font-graffiti);
+    font-size: 1.3rem;
+    color: var(--white-spray);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+.score-value {
+    font-family: var(--font-graffiti);
+    font-size: 2rem;
+    color: var(--electric-yellow);
+    text-shadow: 
+        0 0 15px var(--electric-yellow),
+        2px 2px 0px var(--shadow-black);
+    margin: 0 10px;
+    animation: scoreGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes scoreGlow {
+    from {
+        text-shadow: 
+            0 0 15px var(--electric-yellow),
+            2px 2px 0px var(--shadow-black);
+    }
+    to {
+        text-shadow: 
+            0 0 25px var(--electric-yellow),
+            0 0 35px var(--primary-cyan),
+            2px 2px 0px var(--shadow-black);
+    }
+}
+
+.game-message {
+    font-family: var(--font-graffiti);
+    font-size: 1.2rem;
+    color: var(--primary-cyan);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+.game-board {
+    width: 100%;
+    height: 400px;
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    border-radius: 15px;
+    border: 3px solid var(--primary-magenta);
+    position: relative;
+    overflow: hidden;
+    margin: 30px 0;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(255, 0, 128, 0.1);
+}
+
+.game-heart {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--primary-magenta);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: heartFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px var(--primary-magenta));
+    z-index: 10;
+}
+
+.game-heart:hover {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 20px var(--primary-magenta));
+}
+
+@keyframes heartFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+.game-heart.clicked {
+    animation: heartExplode 0.6s ease-out forwards;
+}
+
+@keyframes heartExplode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.game-controls {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.game-btn {
+    background: linear-gradient(45deg, var(--primary-magenta), var(--primary-cyan));
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: var(--white-spray);
+    font-family: var(--font-graffiti);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.game-btn:hover::before {
+    left: 100%;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+.game-btn:active {
+    transform: translateY(-1px);
+}
+
+.love-messages {
+    margin-top: 40px;
+    min-height: 100px;
+}
+
+.love-message {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(0, 255, 255, 0.1));
+    border: 2px solid var(--electric-yellow);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: messageAppear 0.8s ease-out forwards;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes messageAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.love-message h4 {
+    font-family: var(--font-graffiti);
+    font-size: 1.5rem;
+    color: var(--electric-yellow);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
+.love-message p {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    color: var(--white-spray);
+    line-height: 1.6;
+    text-shadow: 1px 1px 0px var(--shadow-black);
+}
+
+.game-complete {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(45deg, var(--primary-magenta), var(--primary-cyan));
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    animation: gameCompleteGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes gameCompleteGlow {
+    from {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+    to {
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.5),
+            0 0 30px var(--electric-yellow);
+    }
+}
+
+.game-complete h3 {
+    font-family: var(--font-graffiti);
+    font-size: 2.5rem;
+    color: var(--white-spray);
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px var(--shadow-black);
+}
+
+.game-complete p {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    color: var(--white-spray);
+    text-shadow: 2px 2px 0px var(--shadow-black);
+}
+
 /* ===== FOOTER ===== */
 .footer {
-    background: linear-gradient(135deg, var(--dark-bg), #000);
-    padding: 60px 20px 40px;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255, 0, 128, 0.1) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%),
+        linear-gradient(135deg, var(--dark-bg), #000);
+    padding: 80px 20px 60px;
     text-align: center;
-    border-top: 3px solid var(--primary-cyan);
+    border-top: 5px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary-magenta), var(--primary-cyan), var(--electric-yellow)) 1;
     position: relative;
     overflow: hidden;
 }
@@ -935,42 +1621,125 @@ section {
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 25% 25%, var(--primary-magenta) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, var(--primary-cyan) 0%, transparent 50%);
-    opacity: 0.1;
+        radial-gradient(circle at 20% 20%, var(--primary-magenta) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, var(--primary-cyan) 0%, transparent 40%),
+        radial-gradient(circle at 50% 10%, var(--electric-yellow) 0%, transparent 30%);
+    opacity: 0.15;
     z-index: 1;
+    animation: backgroundShift 10s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
 }
 
 .footer-content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
-.footer-content p {
-    font-size: 1.1rem;
-    color: var(--white-spray);
-    margin-bottom: 20px;
+.footer-heart {
+    font-size: 3rem;
+    color: var(--primary-magenta);
+    animation: heartbeat 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px var(--primary-magenta));
 }
 
-.footer-graffiti {
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.footer-message {
     font-family: var(--font-graffiti);
-    font-size: 2rem;
-    color: var(--electric-yellow);
+    font-size: 1.5rem;
+    color: var(--white-spray);
     text-shadow: 
-        0 0 15px var(--electric-yellow),
-        3px 3px 0px var(--shadow-black);
-    animation: pulse 2s ease-in-out infinite;
+        0 0 10px var(--primary-cyan),
+        2px 2px 0px var(--shadow-black);
+    margin: 0;
+    line-height: 1.4;
 }
 
-@keyframes pulse {
-    0%, 100% {
+.footer-signature {
+    font-family: var(--font-graffiti);
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--primary-magenta), var(--primary-cyan), var(--electric-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    animation: neonGlow 3s ease-in-out infinite alternate;
+    position: relative;
+}
+
+.footer-signature::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-cyan), transparent);
+    border-radius: 2px;
+    animation: underlineGlow 2s ease-in-out infinite;
+}
+
+@keyframes neonGlow {
+    from {
+        filter: drop-shadow(0 0 5px var(--primary-cyan));
         transform: scale(1);
-        opacity: 1;
+    }
+    to {
+        filter: drop-shadow(0 0 25px var(--primary-magenta));
+        transform: scale(1.02);
+    }
+}
+
+@keyframes underlineGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scaleX(0.8);
     }
     50% {
-        transform: scale(1.05);
-        opacity: 0.8;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.2);
     }
+}
+
+.footer-tags {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-tag {
+    font-family: var(--font-graffiti);
+    font-size: 0.9rem;
+    color: var(--concrete-gray);
+    opacity: 0.7;
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.footer-tag:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.footer-tag:hover {
+    color: var(--electric-yellow);
+    opacity: 1;
+    transform: rotate(0deg) scale(1.1);
+    text-shadow: 0 0 10px var(--electric-yellow);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

@@ -53,6 +53,8 @@ function initializeApp() {
         initializeGallery();
         initializeVideos();
         initializeCassettes();
+        initializePoetryBook();
+        initializeLoveGame();
         initializeModals();
         initializeScrollEffects();
         
@@ -809,5 +811,315 @@ document.addEventListener('visibilitychange', function() {
         }
     }
 });
+
+
+// ===== LIBRO DE POESÍA =====
+function initializePoetryBook() {
+    const bookCover = document.getElementById('bookCover');
+    const bookPages = document.getElementById('bookPages');
+    const bookControls = document.querySelector('.book-controls');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    const currentPageSpan = document.getElementById('currentPage');
+    const totalPagesSpan = document.getElementById('totalPages');
+    
+    let currentPage = 1;
+    const totalPages = 4;
+    let bookOpen = false;
+    
+    // Actualizar indicadores
+    if (totalPagesSpan) totalPagesSpan.textContent = totalPages;
+    
+    // Abrir libro al hacer clic en la portada
+    if (bookCover) {
+        bookCover.addEventListener('click', function() {
+            if (!bookOpen) {
+                bookCover.style.display = 'none';
+                bookPages.classList.add('open');
+                bookControls.classList.add('show');
+                bookOpen = true;
+                showPage(1);
+            }
+        });
+    }
+    
+    // Navegación de páginas
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+    }
+    
+    function showPage(pageNum) {
+        const pages = document.querySelectorAll('.page');
+        
+        // Ocultar todas las páginas
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Mostrar página actual
+        const targetPage = document.querySelector(`[data-page="${pageNum}"]`);
+        if (targetPage) {
+            setTimeout(() => {
+                targetPage.classList.add('active');
+                
+                // Reiniciar animaciones de versos
+                const verses = targetPage.querySelectorAll('.verse');
+                verses.forEach((verse, index) => {
+                    verse.style.animation = 'none';
+                    setTimeout(() => {
+                        verse.style.animation = `verseFadeIn 0.8s ease-out forwards`;
+                        verse.style.animationDelay = `${0.5 + (index * 0.2)}s`;
+                    }, 50);
+                });
+            }, 100);
+        }
+        
+        // Actualizar indicadores
+        if (currentPageSpan) currentPageSpan.textContent = pageNum;
+        
+        // Actualizar botones
+        if (prevBtn) prevBtn.disabled = pageNum === 1;
+        if (nextBtn) nextBtn.disabled = pageNum === totalPages;
+    }
+}
+
+// ===== JUEGO DEL AMOR =====
+function initializeLoveGame() {
+    const startBtn = document.getElementById('startGame');
+    const resetBtn = document.getElementById('resetGame');
+    const gameBoard = document.getElementById('gameBoard');
+    const scoreValue = document.getElementById('gameScore');
+    const gameMessage = document.getElementById('gameMessage');
+    const loveMessages = document.getElementById('loveMessages');
+    
+    let gameActive = false;
+    let score = 0;
+    let heartsFound = 0;
+    let gameInterval;
+    let heartTimeout;
+    
+    const loveMessagesList = [
+        {
+            title: "Primer Corazón",
+            message: "Desde el primer día que te vi, supe que eras especial. Tu sonrisa iluminó mi mundo."
+        },
+        {
+            title: "Segundo Corazón",
+            message: "Cada momento contigo es un regalo. Eres mi inspiración y mi felicidad."
+        },
+        {
+            title: "Tercer Corazón",
+            message: "Tu risa es mi melodía favorita. Contigo, cada día es una nueva aventura."
+        },
+        {
+            title: "Cuarto Corazón",
+            message: "Eres mi refugio en las tormentas y mi luz en la oscuridad."
+        },
+        {
+            title: "Quinto Corazón",
+            message: "Tu amor me ha transformado. Contigo soy la mejor versión de mí mismo."
+        },
+        {
+            title: "Sexto Corazón",
+            message: "Cada 'te amo' que te digo sale desde lo más profundo de mi alma."
+        },
+        {
+            title: "Séptimo Corazón",
+            message: "Eres mi compañera de vida, mi mejor amiga, mi todo."
+        },
+        {
+            title: "Octavo Corazón",
+            message: "Contigo he aprendido que el amor verdadero sí existe."
+        },
+        {
+            title: "Noveno Corazón",
+            message: "Tu presencia hace que todo tenga sentido. Eres mi hogar."
+        },
+        {
+            title: "Décimo Corazón",
+            message: "Prometo amarte hoy, mañana y por toda la eternidad."
+        },
+        {
+            title: "Undécimo Corazón",
+            message: "Eres el amor de mi vida, mi alma gemela, mi destino."
+        },
+        {
+            title: "Último Corazón",
+            message: "Gracias por existir, por amarme y por hacer de mi vida un cuento de hadas."
+        }
+    ];
+    
+    if (startBtn) {
+        startBtn.addEventListener('click', startGame);
+    }
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetGame);
+    }
+    
+    function startGame() {
+        gameActive = true;
+        score = 0;
+        heartsFound = 0;
+        
+        startBtn.style.display = 'none';
+        resetBtn.style.display = 'inline-block';
+        
+        updateScore();
+        updateMessage("¡Encuentra los corazones que aparecen!");
+        
+        // Limpiar mensajes anteriores
+        if (loveMessages) {
+            loveMessages.innerHTML = '';
+        }
+        
+        // Comenzar a generar corazones
+        generateHeart();
+        
+        gameInterval = setInterval(() => {
+            if (gameActive && heartsFound < 12) {
+                generateHeart();
+            }
+        }, 2000);
+    }
+    
+    function generateHeart() {
+        if (!gameActive || !gameBoard) return;
+        
+        const heart = document.createElement('div');
+        heart.className = 'game-heart';
+        heart.innerHTML = '♥';
+        
+        // Posición aleatoria
+        const boardRect = gameBoard.getBoundingClientRect();
+        const maxX = boardRect.width - 40;
+        const maxY = boardRect.height - 40;
+        
+        heart.style.left = Math.random() * maxX + 'px';
+        heart.style.top = Math.random() * maxY + 'px';
+        
+        // Evento de clic
+        heart.addEventListener('click', function() {
+            if (!gameActive) return;
+            
+            heart.classList.add('clicked');
+            heartsFound++;
+            score += 100;
+            
+            updateScore();
+            showLoveMessage(heartsFound - 1);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 600);
+            
+            if (heartsFound >= 12) {
+                endGame();
+            }
+        });
+        
+        gameBoard.appendChild(heart);
+        
+        // Remover corazón después de 4 segundos si no se hace clic
+        setTimeout(() => {
+            if (heart.parentNode && !heart.classList.contains('clicked')) {
+                heart.remove();
+            }
+        }, 4000);
+    }
+    
+    function showLoveMessage(index) {
+        if (!loveMessages || index >= loveMessagesList.length) return;
+        
+        const messageData = loveMessagesList[index];
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'love-message';
+        messageDiv.innerHTML = `
+            <h4>${messageData.title}</h4>
+            <p>${messageData.message}</p>
+        `;
+        
+        loveMessages.appendChild(messageDiv);
+        
+        // Scroll suave hacia el mensaje
+        setTimeout(() => {
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    }
+    
+    function updateScore() {
+        if (scoreValue) {
+            scoreValue.textContent = heartsFound;
+        }
+    }
+    
+    function updateMessage(text) {
+        if (gameMessage) {
+            gameMessage.textContent = text;
+        }
+    }
+    
+    function endGame() {
+        gameActive = false;
+        clearInterval(gameInterval);
+        
+        updateMessage("¡Felicidades! Has encontrado todos los corazones");
+        
+        // Mostrar mensaje de completado
+        setTimeout(() => {
+            const completeDiv = document.createElement('div');
+            completeDiv.className = 'game-complete';
+            completeDiv.innerHTML = `
+                <h3>¡Juego Completado!</h3>
+                <p>Has encontrado todos los corazones y descubierto todos mis mensajes de amor. Eres increíble, mi amor. ♥</p>
+            `;
+            
+            if (loveMessages) {
+                loveMessages.appendChild(completeDiv);
+                completeDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 1000);
+    }
+    
+    function resetGame() {
+        gameActive = false;
+        clearInterval(gameInterval);
+        
+        // Limpiar tablero
+        if (gameBoard) {
+            gameBoard.innerHTML = '';
+        }
+        
+        // Limpiar mensajes
+        if (loveMessages) {
+            loveMessages.innerHTML = '';
+        }
+        
+        // Resetear valores
+        score = 0;
+        heartsFound = 0;
+        
+        updateScore();
+        updateMessage("¡Haz clic en los corazones que aparecen!");
+        
+        // Mostrar botón de inicio
+        startBtn.style.display = 'inline-block';
+        resetBtn.style.display = 'none';
+    }
+}
 
 console.log('🎵 Página de dedicatoria cargada con amor 💕');
