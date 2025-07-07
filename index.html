@@ -101,6 +101,40 @@
             </div>
         </section>
 
+        <!-- Love Game Section -->
+        <section id="game" class="game-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Juego del Amor</h2>
+                    <div class="graffiti-underline"></div>
+                </div>
+                <!-- <p class="section-subtitle">Encuentra los corazones y descubre mensajes especiales</p> -->
+                
+                <div class="love-game">
+                    <div class="game-info">
+                        <div class="score-display">
+                            <span class="score-label">Corazones encontrados:</span>
+                            <span class="score-value" id="gameScore">0</span> / <span id="totalHearts">12</span>
+                        </div>
+                        <div class="game-message" id="gameMessage">¡Haz clic en los corazones que aparecen!</div>
+                    </div>
+                    
+                    <div class="game-board" id="gameBoard">
+                        <!-- Los corazones se generarán dinámicamente -->
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="game-btn" id="startGame">Comenzar Juego</button>
+                        <button class="game-btn" id="resetGame" style="display: none;">Reiniciar</button>
+                    </div>
+                    
+                    <div class="love-messages" id="loveMessages">
+                        <!-- Los mensajes aparecerán aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Sección de Videos -->
         <section id="videos" class="videos-section">
             <div class="section-header">
@@ -110,40 +144,6 @@
             
             <div class="video-wall" id="video-wall">
                 <!-- Se llenarán dinámicamente -->
-            </div>
-        </section>
-
-        <!-- Sección de Audios -->
-        <section id="audios" class="audios-section">
-            <div class="section-header">
-                <h2 class="section-title">Escucha Mi Voz...</h2>
-                <div class="graffiti-underline"></div>
-            </div>
-            
-            <div class="cassette-player">
-                <div class="cassette-deck">
-                    <div class="cassette-display">
-                        <div class="tape-reels">
-                            <div class="reel left-reel" id="left-reel"></div>
-                            <div class="reel right-reel" id="right-reel"></div>
-                        </div>
-                        <div class="tape-window">
-                            <div class="tape-line" id="tape-line"></div>
-                        </div>
-                    </div>
-                    <div class="cassette-controls">
-                        <button id="cassette-play" class="cassette-btn">▶</button>
-                        <button id="cassette-pause" class="cassette-btn">⏸</button>
-                        <button id="cassette-stop" class="cassette-btn">⏹</button>
-                    </div>
-                    <div class="current-cassette">
-                        <span id="cassette-title">Selecciona un casete</span>
-                    </div>
-                </div>
-                
-                <div class="cassette-collection" id="cassette-collection">
-                    <!-- Se llenarán dinámicamente -->
-                </div>
             </div>
         </section>
 
@@ -230,37 +230,37 @@
                 </div>
             </div>
         </section>
-
-        <!-- Love Game Section -->
-        <section id="game" class="game-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Juego del Amor</h2>
-                    <div class="graffiti-underline"></div>
-                </div>
-                <!-- <p class="section-subtitle">Encuentra los corazones y descubre mensajes especiales</p> -->
-                
-                <div class="love-game">
-                    <div class="game-info">
-                        <div class="score-display">
-                            <span class="score-label">Corazones encontrados:</span>
-                            <span class="score-value" id="gameScore">0</span> / <span id="totalHearts">12</span>
+        
+        <!-- Sección de Audios -->
+        <section id="audios" class="audios-section">
+            <div class="section-header">
+                <h2 class="section-title">Escucha Mi Voz...</h2>
+                <div class="graffiti-underline"></div>
+            </div>
+            
+            <div class="cassette-player">
+                <div class="cassette-deck">
+                    <div class="cassette-display">
+                        <div class="tape-reels">
+                            <div class="reel left-reel" id="left-reel"></div>
+                            <div class="reel right-reel" id="right-reel"></div>
                         </div>
-                        <div class="game-message" id="gameMessage">¡Haz clic en los corazones que aparecen!</div>
+                        <div class="tape-window">
+                            <div class="tape-line" id="tape-line"></div>
+                        </div>
                     </div>
-                    
-                    <div class="game-board" id="gameBoard">
-                        <!-- Los corazones se generarán dinámicamente -->
+                    <div class="cassette-controls">
+                        <button id="cassette-play" class="cassette-btn">▶</button>
+                        <button id="cassette-pause" class="cassette-btn">⏸</button>
+                        <button id="cassette-stop" class="cassette-btn">⏹</button>
                     </div>
-                    
-                    <div class="game-controls">
-                        <button class="game-btn" id="startGame">Comenzar Juego</button>
-                        <button class="game-btn" id="resetGame" style="display: none;">Reiniciar</button>
+                    <div class="current-cassette">
+                        <span id="cassette-title">Selecciona un casete</span>
                     </div>
-                    
-                    <div class="love-messages" id="loveMessages">
-                        <!-- Los mensajes aparecerán aquí -->
-                    </div>
+                </div>
+                
+                <div class="cassette-collection" id="cassette-collection">
+                    <!-- Se llenarán dinámicamente -->
                 </div>
             </div>
         </section>
