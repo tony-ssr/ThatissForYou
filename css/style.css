@@ -1742,6 +1742,376 @@ section {
     text-shadow: 0 0 10px var(--electric-yellow);
 }
 
+/* ===== SECCIÓN DE MENSAJES DE AMOR ===== */
+.love-messages-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 50%, 
+        var(--accent-color) 100%);
+    position: relative;
+    overflow: hidden;
+    /* Añade estas tres líneas para centrar el contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.love-messages-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-size="12" fill="%23ff69b4" opacity="0.1" text-anchor="middle">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+.floating-hearts-container {
+    position: relative;
+    min-height: 400px;
+    margin: 40px 0;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: heartFloat 4s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+    z-index: 10;
+}
+
+.floating-heart:hover {
+    transform: scale(1.3);
+    color: #ff1493;
+    text-shadow: 0 0 30px rgba(255, 20, 147, 1);
+}
+
+.floating-heart.clicked {
+    animation: heartExplode 0.8s ease-out forwards;
+}
+
+@keyframes heartFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(-5px) rotate(-3deg); }
+    75% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes heartExplode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.8); opacity: 0.8; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.love-counter {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-top: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Modal de Mensaje de Amor */
+.love-message-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.love-message-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.love-message-content {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
+    transform: scale(0.5) rotate(-10deg);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.love-message-modal.show .love-message-content {
+    transform: scale(1) rotate(0deg);
+}
+
+.love-message-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.love-message-close:hover {
+    color: #ff1493;
+    transform: scale(1.2);
+}
+
+.love-message-title {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-family: var(--font-graffiti);
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+}
+
+.love-message-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.love-message-hearts {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    animation: heartPulse 1s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ===== SECCIÓN DE SPOTIFY ===== */
+.spotify-section {
+    padding: 80px 0;
+    background: linear-gradient(45deg, 
+        #1a1a1a 0%, 
+        #2d1b69 25%, 
+        #1db954 50%, 
+        #191414 75%, 
+        #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.spotify-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="18" font-size="14" fill="%231db954" opacity="0.1" text-anchor="middle">♪</text></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>');
+    animation: musicFloat 15s linear infinite;
+}
+
+@keyframes musicFloat {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25px); }
+}
+
+.spotify-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.vinyl-record {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #1a1a1a, #333);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.vinyl-record:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(29, 185, 84, 0.3);
+}
+
+.vinyl-record.spinning {
+    animation: vinylSpin 3s linear infinite;
+}
+
+@keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.vinyl-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--accent-color);
+}
+
+.vinyl-hole {
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.vinyl-label {
+    position: absolute;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    top: -25px;
+    white-space: nowrap;
+}
+
+.vinyl-grooves {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vinyl-grooves::before,
+.vinyl-grooves::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vinyl-grooves::before {
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+}
+
+.vinyl-grooves::after {
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+}
+
+.player-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.vinyl-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    border: 2px solid var(--accent-color);
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.vinyl-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.vinyl-btn:hover::before {
+    left: 100%;
+}
+
+.vinyl-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+    border-color: #ff1493;
+}
+
+.spotify-iframe-container {
+    width: 100%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.spotify-iframe-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.iframe-wrapper {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--accent-color);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    padding: 10px;
+}
+
+.playlist-description {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     #music-player {
@@ -1875,4 +2245,64 @@ section {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(var(--primary-cyan), var(--electric-yellow));
+}
+
+/* ===== RESPONSIVE ADICIONAL ===== */
+@media (max-width: 768px) {
+    .game-complete {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Responsive para Mensajes de Amor */
+    .floating-hearts-container {
+        min-height: 300px;
+    }
+    
+    .floating-heart {
+        font-size: 2rem;
+    }
+    
+    .love-message-content {
+        padding: 25px;
+        margin: 20px;
+    }
+    
+    .love-message-title {
+        font-size: 1.5rem;
+    }
+    
+    .love-message-text {
+        font-size: 1rem;
+    }
+    
+    /* Responsive para Spotify */
+    .vinyl-record {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .vinyl-center {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .vinyl-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .player-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .spotify-iframe-container {
+        margin: 0 10px;
+    }
+    
+    .playlist-description {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
 }
