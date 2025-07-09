@@ -57,6 +57,8 @@ function initializeApp() {
         initializeLoveGame();
         initializeModals();
         initializeScrollEffects();
+        initializeLoveMessages();
+        initializeSpotifyPlayer();
         
         // Mostrar contenido principal
         mainContent.style.opacity = '1';
@@ -1119,6 +1121,294 @@ function initializeLoveGame() {
         // Mostrar botón de inicio
         startBtn.style.display = 'inline-block';
         resetBtn.style.display = 'none';
+     }
+}
+
+// ===== MENSAJES DE AMOR EMERGENTES =====
+function initializeLoveMessages() {
+    const heartsContainer = document.getElementById('floatingHeartsContainer');
+    const messagesFoundSpan = document.getElementById('messagesFound');
+    const totalMessagesSpan = document.getElementById('totalMessages');
+    
+    let messagesFound = 0;
+    const totalMessages = 15;
+    let heartInterval;
+    
+    const loveMessages = [
+        {
+            title: "Mi Primer Pensamiento",
+            message: "Cada mañana al despertar, lo primero que viene a mi mente eres tú. Tu sonrisa es el sol que ilumina mis días."
+        },
+        {
+            title: "Tu Risa",
+            message: "Tu risa es la melodía más hermosa que he escuchado. Haría cualquier cosa por escucharla todos los días de mi vida."
+        },
+        {
+            title: "Tus Ojos",
+            message: "En tus ojos veo mi futuro, veo nuestros sueños, veo el amor más puro que existe. Son mi refugio y mi hogar."
+        },
+        {
+            title: "Nuestros Momentos",
+            message: "Cada segundo contigo es un tesoro que guardo en mi corazón. Nuestros momentos juntos son mi mayor felicidad."
+        },
+        {
+            title: "Tu Abrazo",
+            message: "En tus brazos encuentro la paz que mi alma necesita. Eres mi refugio en este mundo tan caótico."
+        },
+        {
+            title: "Mi Inspiración",
+            message: "Eres mi musa, mi inspiración. Gracias a ti he descubierto que el amor verdadero sí existe."
+        },
+        {
+            title: "Nuestro Futuro",
+            message: "Sueño con un futuro a tu lado, construyendo juntos una historia de amor que trascienda el tiempo."
+        },
+        {
+            title: "Tu Fortaleza",
+            message: "Admiro tu fuerza, tu valentía, tu forma de enfrentar la vida. Eres una mujer increíble y me siento afortunado de tenerte."
+        },
+        {
+            title: "Mi Gratitud",
+            message: "Gracias por elegirme, por amarme, por ser parte de mi vida. Eres el mejor regalo que me ha dado el destino."
+        },
+        {
+            title: "Tu Bondad",
+            message: "Tu corazón es puro, lleno de amor y bondad. Cada día aprendo algo nuevo de ti y me enamoro más."
+        },
+        {
+            title: "Nuestras Conversaciones",
+            message: "Podría hablar contigo por horas y nunca me cansaría. Eres mi mejor amiga, mi confidente, mi todo."
+        },
+        {
+            title: "Tu Apoyo",
+            message: "En mis momentos más difíciles, siempre has estado ahí. Tu apoyo incondicional es mi mayor fortaleza."
+        },
+        {
+            title: "Mi Promesa Eterna",
+            message: "Te prometo amarte con la misma intensidad hoy, mañana y por toda la eternidad. Eres mi para siempre."
+        },
+        {
+            title: "Tu Esencia",
+            message: "Eres única, especial, irreemplazable. No existe nadie como tú en este mundo, y me siento bendecido de conocerte."
+        },
+        {
+            title: "Mi Declaración Final",
+            message: "Te amo con cada fibra de mi ser, con cada latido de mi corazón. Eres mi vida, mi amor, mi todo. Gracias por existir."
+        }
+    ];
+    
+    if (totalMessagesSpan) totalMessagesSpan.textContent = totalMessages;
+    
+    // Crear modal para mensajes
+    createLoveMessageModal();
+    
+    // Generar corazones flotantes
+    function generateFloatingHeart() {
+        if (!heartsContainer || messagesFound >= totalMessages) return;
+        
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerHTML = '♥';
+        
+        // Posición aleatoria
+        const containerRect = heartsContainer.getBoundingClientRect();
+        const maxX = containerRect.width - 50;
+        const maxY = containerRect.height - 50;
+        
+        heart.style.left = Math.random() * maxX + 'px';
+        heart.style.top = Math.random() * maxY + 'px';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        
+        // Evento de clic
+        heart.addEventListener('click', function() {
+            if (messagesFound < totalMessages) {
+                heart.classList.add('clicked');
+                showLoveMessage(loveMessages[messagesFound]);
+                messagesFound++;
+                updateMessageCounter();
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 800);
+            }
+        });
+        
+        heartsContainer.appendChild(heart);
+        
+        // Remover corazón después de 8 segundos si no se hace clic
+        setTimeout(() => {
+            if (heart.parentNode && !heart.classList.contains('clicked')) {
+                heart.remove();
+            }
+        }, 8000);
+    }
+    
+    function updateMessageCounter() {
+        if (messagesFoundSpan) {
+            messagesFoundSpan.textContent = messagesFound;
+        }
+        
+        if (messagesFound >= totalMessages) {
+            clearInterval(heartInterval);
+            setTimeout(() => {
+                showCompletionMessage();
+            }, 2000);
+        }
+    }
+    
+    function showCompletionMessage() {
+        const completionMessage = {
+            title: "¡Felicidades!",
+            message: "Has descubierto todos mis mensajes de amor. Cada palabra sale desde lo más profundo de mi corazón. Te amo infinitamente, mi amor. ♥♥♥"
+        };
+        showLoveMessage(completionMessage);
+    }
+    
+    // Iniciar generación de corazones
+    heartInterval = setInterval(generateFloatingHeart, 3000);
+    generateFloatingHeart(); // Primer corazón inmediato
+}
+
+function createLoveMessageModal() {
+    const modal = document.createElement('div');
+    modal.className = 'love-message-modal';
+    modal.id = 'loveMessageModal';
+    
+    modal.innerHTML = `
+        <div class="love-message-content">
+            <span class="love-message-close" id="loveMessageClose">&times;</span>
+            <h3 class="love-message-title" id="loveMessageTitle"></h3>
+            <p class="love-message-text" id="loveMessageText"></p>
+            <div class="love-message-hearts">♥ ♥ ♥</div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Eventos de cierre
+    const closeBtn = modal.querySelector('#loveMessageClose');
+    closeBtn.addEventListener('click', closeLoveMessage);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeLoveMessage();
+        }
+    });
+}
+
+function showLoveMessage(messageData) {
+    const modal = document.getElementById('loveMessageModal');
+    const title = document.getElementById('loveMessageTitle');
+    const text = document.getElementById('loveMessageText');
+    
+    if (modal && title && text) {
+        title.textContent = messageData.title;
+        text.textContent = messageData.message;
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLoveMessage() {
+    const modal = document.getElementById('loveMessageModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ===== REPRODUCTOR SPOTIFY INTERACTIVO =====
+function initializeSpotifyPlayer() {
+    const vinylRecord = document.getElementById('vinylRecord');
+    const showPlaylistBtn = document.getElementById('showPlaylist');
+    const hidePlaylistBtn = document.getElementById('hidePlaylist');
+    const spotifyContainer = document.getElementById('spotifyContainer');
+    
+    let isPlaying = false;
+    
+    // Evento para mostrar playlist
+    if (showPlaylistBtn) {
+        showPlaylistBtn.addEventListener('click', function() {
+            showSpotifyPlaylist();
+        });
+    }
+    
+    // Evento para ocultar playlist
+    if (hidePlaylistBtn) {
+        hidePlaylistBtn.addEventListener('click', function() {
+            hideSpotifyPlaylist();
+        });
+    }
+    
+    // Evento del disco de vinilo
+    if (vinylRecord) {
+        vinylRecord.addEventListener('click', function() {
+            if (!isPlaying) {
+                showSpotifyPlaylist();
+            }
+        });
+    }
+    
+    function showSpotifyPlaylist() {
+        if (spotifyContainer && vinylRecord && showPlaylistBtn && hidePlaylistBtn) {
+            // Animar disco
+            vinylRecord.classList.add('spinning');
+            
+            // Mostrar playlist con animación
+            spotifyContainer.style.display = 'block';
+            setTimeout(() => {
+                spotifyContainer.classList.add('show');
+            }, 100);
+            
+            // Cambiar botones
+            showPlaylistBtn.style.display = 'none';
+            hidePlaylistBtn.style.display = 'inline-block';
+            
+            isPlaying = true;
+            
+            // Scroll suave hacia la playlist
+            setTimeout(() => {
+                spotifyContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 500);
+        }
+    }
+    
+    function hideSpotifyPlaylist() {
+        if (spotifyContainer && vinylRecord && showPlaylistBtn && hidePlaylistBtn) {
+            // Detener animación del disco
+            vinylRecord.classList.remove('spinning');
+            
+            // Ocultar playlist con animación
+            spotifyContainer.classList.remove('show');
+            setTimeout(() => {
+                spotifyContainer.style.display = 'none';
+            }, 500);
+            
+            // Cambiar botones
+            hidePlaylistBtn.style.display = 'none';
+            showPlaylistBtn.style.display = 'inline-block';
+            
+            isPlaying = false;
+        }
+    }
+    
+    // Efecto de hover en el disco
+    if (vinylRecord) {
+        vinylRecord.addEventListener('mouseenter', function() {
+            if (!isPlaying) {
+                vinylRecord.style.transform = 'scale(1.05) rotate(10deg)';
+            }
+        });
+        
+        vinylRecord.addEventListener('mouseleave', function() {
+            if (!isPlaying) {
+                vinylRecord.style.transform = 'scale(1) rotate(0deg)';
+            }
+        });
     }
 }
 
