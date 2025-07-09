@@ -2114,16 +2114,35 @@ section {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    /* REPRODUCTOR DE MÚSICA */
     #music-player {
-        min-width: 300px;
+        width: auto;      /* Ocupa el espacio disponible */
+        min-width: 0;       /* PERMITE QUE SE ENCOJA EN PANTALLAS PEQUEÑAS */
         top: 10px;
         left: 10px;
         right: 10px;
         transform: none;
+        padding: 10px;
     }
-    
+
+    .player-controls {
+        flex-wrap: wrap; /* PERMITE QUE LOS CONTROLES SE APILEN SI NO CABEN */
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .volume-control {
+        flex-grow: 1; /* Asegura que ocupe un espacio adecuado */
+        justify-content: center;
+    }
+
+    #volume-slider {
+        width: 120px; /* Hace la barra de volumen más ancha y usable */
+    }
+
+    /* RESTO DE LA PÁGINA */
     #main-content {
-        margin-top: 140px;
+        margin-top: 150px;
     }
     
     .hero {
@@ -2165,6 +2184,58 @@ section {
     
     .carousel-btn.next {
         right: 10px;
+    }
+
+    .game-complete {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Responsive para Mensajes de Amor */
+    .floating-hearts-container {
+        min-height: 300px;
+    }
+    
+    .floating-heart {
+        font-size: 2rem;
+    }
+    
+    .love-message-content {
+        padding: 25px;
+        margin: 20px;
+    }
+    
+    .love-message-title {
+        font-size: 1.5rem;
+    }
+    
+    .love-message-text {
+        font-size: 1rem;
+    }
+    
+    /* Responsive para Spotify */
+    .vinyl-record {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .vinyl-center {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .vinyl-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .spotify-iframe-container {
+        margin: 0 10px;
+    }
+    
+    .playlist-description {
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }
 
@@ -2245,64 +2316,4 @@ section {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(var(--primary-cyan), var(--electric-yellow));
-}
-
-/* ===== RESPONSIVE ADICIONAL ===== */
-@media (max-width: 768px) {
-    .game-complete {
-        padding: 15px;
-        font-size: 0.9rem;
-    }
-    
-    /* Responsive para Mensajes de Amor */
-    .floating-hearts-container {
-        min-height: 300px;
-    }
-    
-    .floating-heart {
-        font-size: 2rem;
-    }
-    
-    .love-message-content {
-        padding: 25px;
-        margin: 20px;
-    }
-    
-    .love-message-title {
-        font-size: 1.5rem;
-    }
-    
-    .love-message-text {
-        font-size: 1rem;
-    }
-    
-    /* Responsive para Spotify */
-    .vinyl-record {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .vinyl-center {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .vinyl-btn {
-        padding: 12px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .player-controls {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .spotify-iframe-container {
-        margin: 0 10px;
-    }
-    
-    .playlist-description {
-        padding: 15px;
-        font-size: 0.9rem;
-    }
 }
