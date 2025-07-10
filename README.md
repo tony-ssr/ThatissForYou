@@ -140,7 +140,7 @@ Cada elemento, animación y funcionalidad ha sido cuidadosamente diseñado para 
 
 ## 📁 Estructura del Proyecto
 
-<div align="center">
+<div align="left">
 
 ```
 🏠 ThatissForYou/
@@ -167,13 +167,13 @@ Cada elemento, animación y funcionalidad ha sido cuidadosamente diseñado para 
     │   └── 💕 nosotros/            # 👫 Videos de pareja
     ├── 🎧 aud/                     # 🎤 Mensajes de audio
     │   ├── 📼 Audio-1.mp3          # 💌 "Para cuando dudes"
-    │   ├── 📼 Audio-2.mp3          # 🌅 "Buenos días"
+    │   ├── 📼 Audio-2.mp3          # 🌅 "Te voy a decir amor"
     │   ├── 📼 Audio-3.mp3          # 😢 "Cuando estés triste"
-    │   ├── 📼 Audio-4.mp3          # 💭 "Nuestros sueños"
-    │   ├── 📼 Audio-5.mp3          # 💕 "Te amo porque..."
-    │   ├── 📼 Audio-6.mp3          # 🌙 "Buenas noches"
-    │   ├── 📼 Audio-7.mp3          # 🤝 "Primer encuentro"
-    │   └── 📼 Audio-8.mp3          # ♾️ "Siempre juntos"
+    │   ├── 📼 Audio-4.mp3          # 💭 "Pucheros por no contestar"
+    │   ├── 📼 Audio-5.mp3          # 💕 "Me contestas o me contestas"
+    │   ├── 📼 Audio-6.mp3          # 🌙 "Si no comes no como"
+    │   ├── 📼 Audio-7.mp3          # 🤝 "El borracho no miente"
+    │   └── 📼 Audio-8.mp3          # ♾️ "Te juro que te veo feo"
     └── 🎵 sng/                     # 🎶 Música y carátulas
         ├── 🎨 Icn/                 # 💿 Carátulas de álbumes
         └── 🎤 Rpr/                 # 🎵 Archivos de audio
@@ -372,13 +372,13 @@ const CONFIG = {
 | 📼 Casete | 🎤 Título | 🕐 Momento Ideal | 💝 Propósito |
 |-----------|-----------|------------------|---------------|
 | **Audio-1** | 💪 **"Para cuando dudes"** | Momentos de inseguridad | Mensaje de amor y seguridad |
-| **Audio-2** | 🌅 **"Buenos días"** | Cada mañana | Para empezar el día con amor |
+| **Audio-2** | 🌅 **"Te voy a decir amor"** | Nace del amor | Por siempre para ti |
 | **Audio-3** | 😢 **"Cuando estés triste"** | Días difíciles | Para alegrarte el corazón |
-| **Audio-4** | 💭 **"Nuestros sueños"** | Noches de reflexión | Hablando del futuro juntos |
-| **Audio-5** | 💕 **"Te amo porque..."** | Cualquier momento | Todas las razones de mi amor |
-| **Audio-6** | 🌙 **"Buenas noches"** | Antes de dormir | Para que sueñes conmigo |
-| **Audio-7** | 🤝 **"Primer encuentro"** | Aniversarios | Recordando ese momento especial |
-| **Audio-8** | ♾️ **"Siempre juntos"** | Momentos especiales | Una promesa de amor eterno |
+| **Audio-4** | 💭 **"Pucheros por no contestar"** | La patrona | No te enojes conmigo preciosa |
+| **Audio-5** | 💕 **"Me contestas o me contestas"** | Te llamo y qué | Contestas porque yo quiero |
+| **Audio-6** | 🌙 **"Si no comes no como"** | Come o nadie come | Come o me muero yo |
+| **Audio-7** | 🤝 **"El borracho no miente"** | Sinceridad alcoholica | Entre el acohol y el amor |
+| **Audio-8** | ♾️ **"Te juro que te veo feo"** | Tratame bonito | Contestame bambaro |
 
 *Cada mensaje fue grabado con amor y pensado para momentos específicos, creando una banda sonora emocional personalizada.*
 
