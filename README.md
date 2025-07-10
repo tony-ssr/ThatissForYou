@@ -10,7 +10,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Responsive](https://img.shields.io/badge/Responsive-Yes-brightgreen.svg)](https://github.com/yourusername/ThatissForYou)
 
-![Project Banner](https://via.placeholder.com/800x200/ff0080/ffffff?text=ESTEBAN+%E2%9D%A4%EF%B8%8F+TATIANA)
+<!-- ![Project Banner](https://via.placeholder.com/800x200/ff0080/ffffff?text=ESTEBAN+%E2%9D%A4%EF%B8%8F+TATIANA) -->
 
 </div>
 
