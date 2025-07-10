@@ -82,7 +82,7 @@ Cada elemento, animación y funcionalidad ha sido cuidadosamente diseñado para 
 
 ---
 
-## 🆕 **Nuevas Secciones Creativas (2024)**
+## 🆕 **Nuevas Secciones Creativas (2025)**
 
 ### 🖼️ **Galería de Recuerdos Interactiva**
 - 📸 **6 Polaroids Únicos** con momentos especiales
